@@ -47,7 +47,7 @@
  *                                                                                                                                    *
  *                                                                                                                                    *
  *  Desc     : This function uses linking configuration structure to configure pins define in                                         *
- *				PORT_LCFG and externed here to configure pins                                                                         *
+ *             PORT_LCFG and externed here to configure pins                                                                          *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
