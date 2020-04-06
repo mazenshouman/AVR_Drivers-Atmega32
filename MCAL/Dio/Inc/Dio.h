@@ -93,7 +93,7 @@ typedef uint8 Dio_PortLevelType;
  *  Return   : Dio_LevelType                                                                                                          *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc     : This function return the level of passed channel ID                                                                    *
+ *  Desc     : This function return the level of passed channel ID                                                                    *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
@@ -215,7 +215,7 @@ void Dio_WriteChannelGroup(const Dio_ChannelGroupType* ChannelGroupIdPtr,Dio_Por
  *                                                                                                                                    *
  *                                                                                                                                    *
  *  Desc     : This function takes structue contains the port number, the mask which specifies the wanted pin wanted to read          *
- *			   its value and the offset which determines the location of the first pin the mask                                       *
+ *             its value and the offset which determines the location of the first pin the mask                                       *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
