@@ -14,7 +14,7 @@
 #include "Port_Cfg.h"
 #include "Port_Lcfg.h"
 #include "Port.h"
-
+    
 
 /************************************************************************
  *		Private Includes (macros used inside this file only)            *
@@ -51,7 +51,7 @@
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
-
+  
 ErrorStatus_t Port_Init(void){
 	ErrorStatus_t returnError=E_OK;
 	Port_NumberOfConfiguredPinsType u8_localLoopCounter=0;

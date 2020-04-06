@@ -130,7 +130,7 @@ void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level);
  *                                                                                                                                    *
  *			   Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return	 : void                                                                                                      *
+ *	Return	 : void                                                                                                    				  *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *	Desc	 : This function return the level of given port ID                                                                   	  *
