@@ -13,19 +13,19 @@
  *                           Error macros                               *
  ************************************************************************/
 typedef uint8 ErrorStatus_t;
-#define E_OK 				         (ErrorStatus_t)0
-#define E_NOT_OK			         (ErrorStatus_t)1
-#define PORT_PULL_UP_RES_WRONG_USE	 (ErrorStatus_t)2
+#define E_OK                         (ErrorStatus_t)0
+#define E_NOT_OK                     (ErrorStatus_t)1
+#define PORT_PULL_UP_RES_WRONG_USE   (ErrorStatus_t)2
 
 /************************************************************************
  *                         Macros And Types                             *
  ************************************************************************/
 
 typedef uint8 Port_PortType;
-#define PORTD	              (Port_PortType)0
-#define PORTC	              (Port_PortType)1
-#define PORTB	              (Port_PortType)2
-#define PORTA	              (Port_PortType)3
+#define PORTD                 (Port_PortType)0
+#define PORTC                 (Port_PortType)1
+#define PORTB                 (Port_PortType)2
+#define PORTA                 (Port_PortType)3
 
 /************************************************************************/
 
@@ -41,10 +41,10 @@ typedef uint8 Port_PortType;
  *                                                                                                                                    *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return   : ErrorStatus_t                                                                                                          *
+ *  Return   : ErrorStatus_t                                                                                                          *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc     : This function uses linking configuration structure to configure pins define in                                         *
+ *  Desc     : This function uses linking configuration structure to configure pins define in                                         *
  *				PORT_LCFG and externed here to configure pins                                                                         *
  *                                                                                                                                    *
  *                                                                                                                                    *

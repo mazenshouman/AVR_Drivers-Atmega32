@@ -23,8 +23,8 @@
 /************************************************************************
  *                              macros                                  *
  ************************************************************************/
-#define		NUMBER_OF_BITS_IN_REG					8
-#define 	GET_DIO_BASE_ADDRESS(PORT)   		    (DIO_BASE_ADDRESS+PORT)
+#define     NUMBER_OF_BITS_IN_REG                   8
+#define     GET_DIO_BASE_ADDRESS(PORT)              (DIO_BASE_ADDRESS+PORT)
 
 /************************************************************************
  *                     Function's Implementation                        *
@@ -39,7 +39,7 @@
  *                                                                                                                                    *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return   : Dio_LevelType                                                                                                          *
+ *  Return   : Dio_LevelType                                                                                                          *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *	Desc     : This function return the level of passed channel ID                                                                    *
@@ -80,10 +80,10 @@ Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId){
  *                                                                                                                                    *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return   : Dio_LevelType                                                                                              			  *
+ *  Return   : Dio_LevelType                                                                                                          *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc     : This function writes the level to the given channel ID                                                                 *
+ *  Desc     : This function writes the level to the given channel ID                                                                 *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
@@ -116,10 +116,10 @@ void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level){
  *                                                                                                                                    *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return   : void                                                                                                                   *
+ *  Return   : void                                                                                                                   *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc     : This function return the level of given port ID                                                                        *
+ *  Desc     : This function return the level of given port ID                                                                        *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
@@ -144,10 +144,10 @@ Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId){
  *                                                                                                                                    *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return   : void                                                                                                                   *
+ *  Return   : void                                                                                                                   *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc     : This function writes the level to the given PORT ID                                                                    *
+ *  Desc     : This function writes the level to the given PORT ID                                                                    *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
@@ -167,10 +167,10 @@ void Dio_WritePort(Dio_PortType PortId,Dio_PortLevelType Level){
  *                                                                                                                                    *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return   : void                                                                                                                   *
+ *  Return   : void                                                                                                                   *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc     : This function takes structue contains the port number, the mask which specifies the wanted pin wanted to read          *
+ *  Desc     : This function takes structue contains the port number, the mask which specifies the wanted pin wanted to read          *
  *             its value and the offset which determines the location of the first pin the mask                                       *
  *                                                                                                                                    *
  *                                                                                                                                    *
@@ -187,7 +187,7 @@ Dio_PortLevelType Dio_ReadChannelGroup(const Dio_ChannelGroupType* ChannelGroupI
 
 /**************************************************************************************************************************************
  *  Function : Dio_WriteChannelGroup                                                                                                  *
- *  Param 	 : IN     : Name / ChannelGroupIdPtr                                                                                      *
+ *  Param    : IN     : Name / ChannelGroupIdPtr                                                                                      *
  *                      Type / const Dio_ChannelGroupType*                                                                            *
  *                      Desc / take Port ID which is predefine macro                                                                  *
  *                                                                                                                                    *
@@ -196,10 +196,10 @@ Dio_PortLevelType Dio_ReadChannelGroup(const Dio_ChannelGroupType* ChannelGroupI
  *                      Desc / take wanted value to write at the given port without shift                                             *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return   : void                                                                                                                   *
+ *  Return   : void                                                                                                                   *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc    : This function takes structue contains the value wanted to be written on the specific register                           *
+ *  Desc    : This function takes structue contains the value wanted to be written on the specific register                           *
  *            on certain pin with offset value and number of pins define by the mask value each high value equals to pin              *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
@@ -222,10 +222,10 @@ void Dio_WriteChannelGroup(const Dio_ChannelGroupType* ChannelGroupIdPtr,Dio_Por
  *                                                                                                                                    *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return   : Dio_LevelType                                                                                                          *
+ *  Return   : Dio_LevelType                                                                                                          *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc     : This function takes structue contains the port number, the mask which specifies the wanted pin wanted to read          *
+ *  Desc     : This function takes structue contains the port number, the mask which specifies the wanted pin wanted to read          *
  *			   its value and the offset which determines the location of the first pin the mask                                       *
  *                                                                                                                                    *
  *                                                                                                                                    *

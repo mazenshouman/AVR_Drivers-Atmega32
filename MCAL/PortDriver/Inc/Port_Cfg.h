@@ -17,7 +17,7 @@
  *
  * */
 
-#define PortSetPinDirectionApi 			0
+#define PortSetPinDirectionApi          0
 
 
 /*
@@ -28,7 +28,7 @@
  * */
 
 typedef uint8 Port_NumberOfConfiguredPinsType;
-#define NUMBER_OF_CONFIGURED_PINS		(Port_NumberOfConfiguredPinsType)4
+#define NUMBER_OF_CONFIGURED_PINS      (Port_NumberOfConfiguredPinsType)4
 
 
 /****************************************************************************/

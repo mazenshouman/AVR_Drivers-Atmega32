@@ -14,7 +14,7 @@
  ************************************************************************/
 
 typedef uint8 Led_IdType;
-#define LED_ID0						                (Led_IdType)0
+#define LED_ID0                                     (Led_IdType)0
 #define LED_ID1                                     (Led_IdType)1
 #define LED_ID2                                     (Led_IdType)2
 #define LED_ID3                                     (Led_IdType)3
@@ -57,19 +57,19 @@ typedef uint8 Led_IdType;
 #define LED_ID40                                    (Led_IdType)40
 
 typedef uint8 Led_ErrorStateType;
-#define E_OK										(Led_ErrorStateType)0
-#define E_NOT_OK					                (Led_ErrorStateType)1
-#define LED_ID_UNDEFINED			                (Led_ErrorStateType)2
+#define E_OK                                        (Led_ErrorStateType)0
+#define E_NOT_OK                                    (Led_ErrorStateType)1
+#define LED_ID_UNDEFINED                            (Led_ErrorStateType)2
 
 
 typedef uint8 Led_CurrentDirectionType;
-#define LED_SOURCING				   				(Led_CurrentDirectionType)0
-#define LED_SINKING					   				(Led_CurrentDirectionType)1
+#define LED_SOURCING                                (Led_CurrentDirectionType)0
+#define LED_SINKING                                 (Led_CurrentDirectionType)1
 
 
 typedef uint8 Led_InitialState;
-#define LED_OFF										(Led_InitialState)0
-#define LED_ON										(Led_InitialState)1
+#define LED_OFF                                     (Led_InitialState)0
+#define LED_ON                                      (Led_InitialState)1
 
 /************************************************************************/
 

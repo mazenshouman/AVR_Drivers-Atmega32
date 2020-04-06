@@ -27,8 +27,8 @@
  *                              macros                                  *
  ************************************************************************/
 
-#define		NUMBER_OF_BITS_IN_REG					8
-#define 	GET_PORT_BASE_ADDRESS(PORT)   		    (PORT_BASE_ADDRESS+PORT)
+#define     NUMBER_OF_BITS_IN_REG                   8
+#define     GET_PORT_BASE_ADDRESS(PORT)             (PORT_BASE_ADDRESS+PORT)
 
 /************************************************************************
  *                     Function's Implementation                        *
@@ -43,10 +43,10 @@
  *                                                                                                                                    *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return   : ErrorStatus_t                                                                                                          *
+ *  Return   : ErrorStatus_t                                                                                                          *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc     : This function uses linking configuration structure to configure pins define in                                         *
+ *  Desc     : This function uses linking configuration structure to configure pins define in                                         *
  *				PORT_LCFG and externed here to configure pins                                                                         *
  *                                                                                                                                    *
  *                                                                                                                                    *
