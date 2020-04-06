@@ -10,7 +10,7 @@
 
 
 /************************************************************************
- *				 		Error macros                    				*
+ *                           Error macros                               *
  ************************************************************************/
 typedef uint8 ErrorStatus_t;
 #define E_OK 				         (ErrorStatus_t)0
@@ -18,7 +18,7 @@ typedef uint8 ErrorStatus_t;
 #define PORT_PULL_UP_RES_WRONG_USE	 (ErrorStatus_t)2
 
 /************************************************************************
- *				 			macros                    					*
+ *                         Macros And Types                             *
  ************************************************************************/
 
 typedef uint8 Port_PortType;
@@ -27,23 +27,24 @@ typedef uint8 Port_PortType;
 #define PORTB	              (Port_PortType)2
 #define PORTA	              (Port_PortType)3
 
+/************************************************************************/
+
 /************************************************************************
- *			    	 PORT functions' prototypes	                        *
+ *                    PORT functions' prototypes                        *
  ************************************************************************/
 
-
 /**************************************************************************************************************************************
- *  Function : Port_Init                                                                                                              *
- *  Param 	 : IN  	  : Name / None                                                                                                   *
- *						Type / void                                                                                                   *
- *						Desc / None                                                                                                   *
+ *  Function : Dio_ReadChannel                                                                                                        *
+ *  Param    : IN     : Name / None                                                                                                   *
+ *                      Type / void                                                                                                   *
+ *                      Desc / None                                                                                                   *
  *                                                                                                                                    *
- *			   Output : None                                                                                                          *
+ *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return	 : ErrorStatus_t                                                                                                          *
+ *	Return   : ErrorStatus_t                                                                                                          *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc	 : This function uses linking configuration structure to configure pins define in                                         *
+ *	Desc     : This function uses linking configuration structure to configure pins define in                                         *
  *				PORT_LCFG and externed here to configure pins                                                                         *
  *                                                                                                                                    *
  *                                                                                                                                    *

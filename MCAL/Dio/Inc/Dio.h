@@ -11,7 +11,7 @@
 
 
 /************************************************************************
- *				 			Macros And Types                   			*
+ *                         Macros And Types                             *
  ************************************************************************/
 
 typedef uint8 Dio_ChannelType;
@@ -79,21 +79,21 @@ typedef uint8 Dio_PortLevelType;
 /************************************************************************/
 
 /************************************************************************
- *			    	 PORT functions' prototypes	                        *
+ *                    DIO functions' prototypes                         *
  ************************************************************************/
 
 /**************************************************************************************************************************************
  *  Function : Dio_ReadChannel                                                                                                        *
- *  Param 	 : IN  	  : Name / ChannelId                                                                                              *
- *						Type / Dio_ChannelType                                                                                        *
- *						Desc / take channel ID which is predefine macro                                                               *
+ *  Param    : IN     : Name / ChannelId                                                                                              *
+ *                      Type / Dio_ChannelType                                                                                        *
+ *                      Desc / take channel ID which is predefine macro                                                               *
  *                                                                                                                                    *
- *			   Output : None                                                                                                          *
+ *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return	 : Dio_LevelType                                                                                                          *
+ *	Return   : Dio_LevelType                                                                                                          *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc	 : This function return the level of passed channel ID                                                                    *
+ *	Desc     : This function return the level of passed channel ID                                                                    *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
@@ -102,20 +102,20 @@ Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId);
 
 /**************************************************************************************************************************************
  *  Function : Dio_WriteChannel                                                                                                       *
- *  Param 	 : IN  	  : Name / ChannelId                                                                                              *
- *						Type / Dio_ChannelType                                                                                        *
- *						Desc / take channel ID which is predefine macro                                                               *
+ *  Param    : IN     : Name / ChannelId                                                                                              *
+ *                      Type / Dio_ChannelType                                                                                        *
+ *                      Desc / take channel ID which is predefine macro                                                               *
  *                                                                                                                                    *
- *						Name / Level                                                                                                  *
- *						Type / Dio_LevelType                                                                                          *
- *						Desc / take wanted value to write at the given channel 														  *
- *                                                                                               	   	   	   	   	   	   	   	   	  *
- *			   Output : None                                                                                                          *
+ *                      Name / Level                                                                                                  *
+ *                      Type / Dio_LevelType                                                                                          *
+ *                      Desc / take wanted value to write at the given channel                                                        *
  *                                                                                                                                    *
- *	Return	 : Dio_LevelType                                                                                                          *
+ *             Output : None                                                                                                          *
+ *                                                                                                                                    *
+ *	Return   : Dio_LevelType                                                                                              			  *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc	 : This function writes the level to the given channel ID                                                                 *
+ *	Desc     : This function writes the level to the given channel ID                                                                 *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
@@ -123,17 +123,17 @@ Dio_LevelType Dio_ReadChannel(Dio_ChannelType ChannelId);
 void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level);
 
 /**************************************************************************************************************************************
- *  Function : Dio_ReadPort                                                                                                       	  *
- *  Param 	 : IN  	  : Name / PortId                                                                                             	  *
- *						Type / Dio_PortType                                                                                        	  *
- *						Desc / take Port ID which is predefine macro                                                               	  *
+ *  Function : Dio_ReadPort                                                                                                           *
+ *  Param    : IN     : Name / PortId                                                                                                 *
+ *                      Type / Dio_PortType                                                                                           *
+ *                      Desc / take Port ID which is predefine macro                                                                  *
  *                                                                                                                                    *
- *			   Output : None                                                                                                          *
+ *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return	 : void                                                                                                    				  *
+ *	Return   : void                                                                                                                   *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc	 : This function return the level of given port ID                                                                   	  *
+ *	Desc     : This function return the level of given port ID                                                                        *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
@@ -142,20 +142,20 @@ Dio_PortLevelType Dio_ReadPort(Dio_PortType PortId);
 
 /**************************************************************************************************************************************
  *  Function : Dio_WritePort                                                                                                          *
- *  Param 	 : IN  	  : Name / PortId                                                                                                 *
- *						Type / Dio_PortType                                                                                           *
- *						Desc / take PORT ID which is predefine macro                                                               	  *
+ *  Param    : IN     : Name / PortId                                                                                                 *
+ *                      Type / Dio_PortType                                                                                           *
+ *                      Desc / take PORT ID which is predefine macro                                                                  *
  *                                                                                                                                    *
- *						Name / Level                                                                                                  *
- *						Type / Dio_PortLevelType                                                                                      *
- *						Desc / take wanted value to write at the given port 														  *
- *                                                                                               	   	   	   	   	   	   	   	   	  *
- *			   Output : None                                                                                                          *
+ *                      Name / Level                                                                                                  *
+ *                      Type / Dio_PortLevelType                                                                                      *
+ *                      Desc / take wanted value to write at the given port                                                           *
  *                                                                                                                                    *
- *	Return	 : void                                                                                                          		  *
+ *             Output : None                                                                                                          *
+ *                                                                                                                                    *
+ *	Return   : void                                                                                                                   *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc	 : This function writes the level to the given PORT ID                                                              	  *
+ *	Desc     : This function writes the level to the given PORT ID                                                                    *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
@@ -164,17 +164,17 @@ void Dio_WritePort(Dio_PortType PortId,Dio_PortLevelType Level);
 
 /**************************************************************************************************************************************
  *  Function : Dio_ReadChannelGroup                                                                                                   *
- *  Param 	 : IN  	  : Name / ChannelGroupIdPtr                                                                                      *
- *						Type / const Dio_ChannelGroupType*                                                                            *
- *						Desc / take structure which is defined type                                                               	  *
+ *  Param    : IN     : Name / ChannelGroupIdPtr                                                                                      *
+ *                      Type / const Dio_ChannelGroupType*                                                                            *
+ *                      Desc / take structure which is defined type                                                                   *
  *                                                                                                                                    *
- *			   Output : None                                                                                                          *
+ *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return	 : void                                                                                                      			  *
+ *	Return   : void                                                                                                                   *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc	 : This function takes structue contains the port number, the mask which specifies the wanted pin wanted to read		  *
- *			   its value and the offset which determines the location of the first pin the mask            							  *
+ *	Desc     : This function takes structue contains the port number, the mask which specifies the wanted pin wanted to read          *
+ *             its value and the offset which determines the location of the first pin the mask                                       *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
@@ -183,26 +183,42 @@ Dio_PortLevelType Dio_ReadChannelGroup(const Dio_ChannelGroupType* ChannelGroupI
 
 /**************************************************************************************************************************************
  *  Function : Dio_WriteChannelGroup                                                                                                  *
- *  Param 	 : IN  	  : Name / ChannelGroupIdPtr                                                                                      *
- *						Type / const Dio_ChannelGroupType*                                                                            *
- *						Desc / take Port ID which is predefine macro                                                               	  *
+ *  Param 	 : IN     : Name / ChannelGroupIdPtr                                                                                      *
+ *                      Type / const Dio_ChannelGroupType*                                                                            *
+ *                      Desc / take Port ID which is predefine macro                                                                  *
  *                                                                                                                                    *
- *						Name / Level                                                                                                  *
- *						Type / Dio_PortLevelType                                                                                      *
- *						Desc / take wanted value to write at the given port without shift											  *
- *			   Output : None                                                                                                          *
+ *                      Name / Level                                                                                                  *
+ *                      Type / Dio_PortLevelType                                                                                      *
+ *                      Desc / take wanted value to write at the given port without shift                                             *
+ *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return	 : void                                                                                                      			  *
+ *	Return   : void                                                                                                                   *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc	 : This function takes structue contains the value wanted to be written on the specific register						  *
- *				on certain pin with offset value and number of pins define by the mask value each high value equals to pin			  *
+ *	Desc    : This function takes structue contains the value wanted to be written on the specific register                           *
+ *            on certain pin with offset value and number of pins define by the mask value each high value equals to pin              *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
 void Dio_WriteChannelGroup(const Dio_ChannelGroupType* ChannelGroupIdPtr,Dio_PortLevelType Level);
 
 
+/**************************************************************************************************************************************
+ *  Function : Dio_FlipChannel                                                                                                        *
+ *  Param    : IN     : Name / ChannelId                                                                                              *
+ *                      Type / Dio_ChannelType                                                                                        *
+ *                      Desc / take channel ID which is predefine macro                                                               *
+ *                                                                                                                                    *
+ *             Output : None                                                                                                          *
+ *                                                                                                                                    *
+ *	Return   : Dio_LevelType                                                                                                          *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *	Desc     : This function takes structue contains the port number, the mask which specifies the wanted pin wanted to read          *
+ *			   its value and the offset which determines the location of the first pin the mask                                       *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *************************************************************************************************************************************/
 
 Dio_LevelType Dio_FlipChannel(Dio_ChannelType ChannelId);
 

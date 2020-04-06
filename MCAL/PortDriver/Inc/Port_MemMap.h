@@ -9,7 +9,7 @@
 #define PORTDRIVER_INC_PORT_MEMMAP_H_
 
 /************************************************************************
- *				 		H/W registers and Access mechanism              *
+ *                    H/W registers and Access mechanism                *
  ************************************************************************/
 
 typedef uint8 		       	  PIN_Reg_Size_t;

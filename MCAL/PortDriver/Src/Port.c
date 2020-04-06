@@ -6,7 +6,7 @@
  */
 
 /************************************************************************
- *				 				Includes                    			*
+ *                              Includes                                *
  ************************************************************************/
 
 #include "Std_Types.h"
@@ -17,41 +17,41 @@
     
 
 /************************************************************************
- *		Private Includes (macros used inside this file only)            *
- ***********************************************************************/
+ *        Private Includes (macros used inside this file only)          *
+ ************************************************************************/
 #include "Port_MemMap.h"
 
 
 
 /************************************************************************
- *				 				macros                    				*
+ *                              macros                                  *
  ************************************************************************/
 
 #define		NUMBER_OF_BITS_IN_REG					8
 #define 	GET_PORT_BASE_ADDRESS(PORT)   		    (PORT_BASE_ADDRESS+PORT)
 
 /************************************************************************
- *				 		Function's Implementation                    	*
+ *                     Function's Implementation                        *
  ************************************************************************/
 
 
 /**************************************************************************************************************************************
- *  Function : Port_Init                                                                                                              *
- *  Param 	 : IN  	  : Name / None                                                                                                   *
- *						Type / void                                                                                                   *
- *						Desc / None                                                                                                   *
+ *  Function : Dio_ReadChannel                                                                                                        *
+ *  Param    : IN     : Name / None                                                                                                   *
+ *                      Type / void                                                                                                   *
+ *                      Desc / None                                                                                                   *
  *                                                                                                                                    *
- *			   Output : None                                                                                                          *
+ *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *	Return	 : ErrorStatus_t                                                                                                          *
+ *	Return   : ErrorStatus_t                                                                                                          *
  *                                                                                                                                    *
  *                                                                                                                                    *
- *	Desc	 : This function uses linking configuration structure to configure pins define in                                         *
+ *	Desc     : This function uses linking configuration structure to configure pins define in                                         *
  *				PORT_LCFG and externed here to configure pins                                                                         *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *************************************************************************************************************************************/
-  
+
 ErrorStatus_t Port_Init(void){
 	ErrorStatus_t returnError=E_OK;
 	Port_NumberOfConfiguredPinsType u8_localLoopCounter=0;

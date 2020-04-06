@@ -9,7 +9,7 @@
 #define PORTDRIVER_INC_PORT_CFG_H_
 
 /************************************************************************
- *				        Configuration macros                    		*
+ *                      Configuration macros                            *
  ************************************************************************/
 /*
  * this configuration used by port.h to enable or disable runtime API for

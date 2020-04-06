@@ -11,7 +11,7 @@
 
 
 /************************************************************************
- *				 			Macros And Types                   			*
+ *                         Macros And Types                             *
  ************************************************************************/
 
 typedef uint8 Port_PinType;
@@ -65,7 +65,7 @@ typedef enum{
 
 
 /************************************************************************
- *				 		Configuration Structure 						*
+ *                      Configuration Structure                         *
  ************************************************************************/
 typedef struct{
 	Port_PinType 			Channel_ID:6;
@@ -74,7 +74,7 @@ typedef struct{
 }Port_ConfigType;
 
 /************************************************************************
- *				 		Externed Structure instance               		*
+ *                      Externed Structure instance                     *
  ************************************************************************/
 
 extern Port_ConfigType gastr_ConfigArr[];

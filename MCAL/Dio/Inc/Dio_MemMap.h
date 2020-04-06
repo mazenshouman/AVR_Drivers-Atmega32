@@ -9,7 +9,7 @@
 #define DIO_INC_DIO_MEMMAP_H_
 
 /************************************************************************
- *				 		H/W registers and Access mechanism              *
+ *                    H/W registers and Access mechanism                *
  ************************************************************************/
 
 typedef uint8 		       	        Dio_PIN_Reg_Size_t;
