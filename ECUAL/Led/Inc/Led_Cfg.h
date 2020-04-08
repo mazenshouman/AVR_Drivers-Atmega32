@@ -13,8 +13,8 @@
  *                      Configuration macros                            *
  ************************************************************************/
 /*
- * this configuration parameter used to determine the number of switches that
- * will be configured in the Led_Lcfg.c file (array of structure)
+ * this configuration parameter used to determine the number of Leds that
+ * will be configured in the Led_Lcfg.c file (array of structures)
  * */
 
 typedef uint8 Led_ConfigurationStrSizeType;

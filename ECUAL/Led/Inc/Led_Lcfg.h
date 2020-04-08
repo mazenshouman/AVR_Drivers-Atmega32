@@ -9,15 +9,6 @@
 #define LED_INC_LED_LCFG_H_
 
 /************************************************************************
- *                              Includes                                *
- ************************************************************************/
-/*
- * this file contains the wrapper layer between Led and Dio drivers
- * */
-#include "Led_Wrapper.h"
-
-
-/************************************************************************
  *                         Macros And Types                             *
  ************************************************************************/
 
@@ -37,10 +28,6 @@ typedef uint8 Led_InitialStateType;
 #define LED_OFF                                     (Led_InitialStateType)0
 #define LED_ON                                      (Led_InitialStateType)1
 
-
-
-
-
 /************************************************************************
  *                      Configuration Structure                         *
  ************************************************************************/
@@ -51,6 +38,15 @@ typedef struct{
     Led_InitialStateType              Led_InitialState;
 }Led_ConfigType;
 
+/************************************************************************
+ *                      extern for Configuration Structure              *
+ ************************************************************************/
+
 extern Led_ConfigType gastr_LedConfigArr[];
+
+
+/************************************************************************/
+
+
 
 #endif /* LED_INC_LED_LCFG_H_ */
