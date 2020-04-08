@@ -1,8 +1,8 @@
 /*
- * Led.h
- *
- *  Created on: ??þ/??þ/????
- *      Author: Mazen Sh
+ *  File 	   : Led.h
+ *  Created on : April 8, 2020
+ *  Author	   : Mazen Shouman
+ *  Version    : 1.0
  */
 
 #ifndef LED_INC_LED_H_
@@ -57,19 +57,12 @@ typedef uint8 Led_IdType;
 #define LED_ID40                                    (Led_IdType)40
 
 typedef uint8 Led_ErrorStateType;
-#define E_OK                                        (Led_ErrorStateType)0
-#define E_NOT_OK                                    (Led_ErrorStateType)1
-#define LED_ID_UNDEFINED                            (Led_ErrorStateType)2
+#define LED_E_OK                                    (Led_ErrorStateType)0
+#define LED_E_NOT_OK                                (Led_ErrorStateType)1
+#define LED_ID_OUTOFRANGE                           (Led_ErrorStateType)2
+#define LED_CURRENT_DIRECTION_IS_NOT_DEFINED        (Led_ErrorStateType)3
 
 
-typedef uint8 Led_CurrentDirectionType;
-#define LED_SOURCING                                (Led_CurrentDirectionType)0
-#define LED_SINKING                                 (Led_CurrentDirectionType)1
-
-
-typedef uint8 Led_InitialState;
-#define LED_OFF                                     (Led_InitialState)0
-#define LED_ON                                      (Led_InitialState)1
 
 /************************************************************************/
 
@@ -77,13 +70,83 @@ typedef uint8 Led_InitialState;
  *                    PORT functions' prototype                         *
  ************************************************************************/
 
+/**************************************************************************************************************************************
+ *  Function : Led_Init                                                                                                               *
+ *  Param    : IN     : Name / None                                                                                                   *
+ *                      Type / void                                                                                                   *
+ *                      Desc / None                                                                                                   *
+ *                                                                                                                                    *
+ *             Output : None                                                                                                          *
+ *                                                                                                                                    *
+ *  Return   : void                                                                                                                   *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *  Desc     : This function uses linking configuration structure to initialize Leds with the initial state                           *
+ *             ON/OFF)                                                                                                                *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *************************************************************************************************************************************/
 
 void Led_Init(void);
 
+/**************************************************************************************************************************************
+ *  Function : Led_On                                                                                                                 *
+ *  Param    : IN     : Name / Led_Id                                                                                                 *
+ *                      Type / Led_IdType                                                                                             *
+ *                      Desc / predefine macro for led id                                                                             *
+ *                                                                                                                                    *
+ *             Output : None                                                                                                          *
+ *                                                                                                                                    *
+ *  Return   : Led_ErrorStateType                                                                                                     *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *  Desc     : This function turn on led depending on its current direction                                                           *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *************************************************************************************************************************************/
+
 Led_ErrorStateType Led_On(Led_IdType Led_Id);
+
+/**************************************************************************************************************************************
+ *  Function : Led_On                                                                                                                 *
+ *  Param    : IN     : Name / Led_Id                                                                                                 *
+ *                      Type / Led_IdType                                                                                             *
+ *                      Desc / predefine macro for led id                                                                             *
+ *                                                                                                                                    *
+ *             Output : None                                                                                                          *
+ *                                                                                                                                    *
+ *  Return   : Led_ErrorStateType                                                                                                     *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *  Desc     : This function turn off led depending on its current direction                                                          *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *************************************************************************************************************************************/
 
 Led_ErrorStateType Led_Off(Led_IdType Led_Id);
 
+/**************************************************************************************************************************************
+ *  Function : Led_Toggle                                                                                                                 *
+ *  Param    : IN     : Name / Led_Id                                                                                                 *
+ *                      Type / Led_IdType                                                                                             *
+ *                      Desc / predefine macro for led id                                                                             *
+ *                                                                                                                                    *
+ *             Output : None                                                                                                          *
+ *                                                                                                                                    *
+ *  Return   : Led_ErrorStateType                                                                                                     *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *  Desc     : This function toggle led depending on its current direction                                                          *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *************************************************************************************************************************************/
 
+Led_ErrorStateType Led_Toggle(Led_IdType Led_Id);
+
+
+/**************************************************************************************************************************************/
 
 #endif /* LED_INC_LED_H_ */

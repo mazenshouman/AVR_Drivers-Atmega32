@@ -105,7 +105,7 @@ void Dio_WriteChannel(Dio_ChannelType ChannelId,Dio_LevelType Level){
 	 * set the value in the wanted channel
 	 * */
 
-	SET_BIT(GET_DIO_BASE_ADDRESS(u8_RegOffset)-> PORT , u8_ActualPinNumber );
+	SET_VALUE_FOR_BIT_IN_REG(GET_DIO_BASE_ADDRESS(u8_RegOffset)-> PORT , u8_ActualPinNumber , Level);
 }
 
 /**************************************************************************************************************************************

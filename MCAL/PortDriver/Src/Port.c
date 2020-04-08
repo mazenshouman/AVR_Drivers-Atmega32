@@ -64,36 +64,36 @@ ErrorStatus_t Port_Init(void){
 		 * this line gets the port value which when added to the base address will access the correct DDR reg
 		 **/
 
-		u8_PortNumber =(Port_PortType) ((gastr_ConfigArr[u8_localLoopCounter].Channel_ID / NUMBER_OF_BITS_IN_REG));
+		u8_PortNumber =(Port_PortType) ((gastr_PortConfigArr[u8_localLoopCounter].Channel_ID / NUMBER_OF_BITS_IN_REG));
 
 		/*
 		 * this line gets the actual pin number for the selected port so if the value of the entered pin is for ex 10 this means
 		 * port C PIN 2
 		 * */
 
-		u8_PinActualNumber = (Port_PinType) (gastr_ConfigArr[u8_localLoopCounter].Channel_ID % NUMBER_OF_BITS_IN_REG);
+		u8_PinActualNumber = (Port_PinType) (gastr_PortConfigArr[u8_localLoopCounter].Channel_ID % NUMBER_OF_BITS_IN_REG);
 
 		/*
 		 * this line sets the selected direction in the DDR register
 		 *
 		 * */
 
-		SET_VALUE_FOR_BIT_IN_REG(GET_PORT_BASE_ADDRESS(u8_PortNumber) -> DDR,u8_PinActualNumber,gastr_ConfigArr[u8_localLoopCounter] . Channel_Direction);
+		SET_VALUE_FOR_BIT_IN_REG(GET_PORT_BASE_ADDRESS(u8_PortNumber) -> DDR,u8_PinActualNumber,gastr_PortConfigArr[u8_localLoopCounter] . Channel_Direction);
 #if 0
-		GET_PORT_BASE(u8_PortNumber)-> DDR = ((GET_PORT_BASE(u8_PortNumber)-> DDR) & (~(1<<u8_PinActualNumber))) | ((gastr_ConfigArr[u8_localLoopCounter] . Channel_Direction)<<u8_PinActualNumber);
+		GET_PORT_BASE(u8_PortNumber)-> DDR = ((GET_PORT_BASE(u8_PortNumber)-> DDR) & (~(1<<u8_PinActualNumber))) | ((gastr_PortConfigArr[u8_localLoopCounter] . Channel_Direction)<<u8_PinActualNumber);
 #endif
 
 		/*
 		 * if the port direction selected as input this check the resistor attachment value
 		 * */
 
-		if(gastr_ConfigArr[u8_localLoopCounter] . Channel_Direction == PORT_PIN_IN){
-			SET_VALUE_FOR_BIT_IN_REG(GET_PORT_BASE_ADDRESS(u8_PortNumber) -> PORT ,u8_PinActualNumber,gastr_ConfigArr[u8_localLoopCounter] .channel_Attachment);
+		if(gastr_PortConfigArr[u8_localLoopCounter] . Channel_Direction == PORT_PIN_IN){
+			SET_VALUE_FOR_BIT_IN_REG(GET_PORT_BASE_ADDRESS(u8_PortNumber) -> PORT ,u8_PinActualNumber,gastr_PortConfigArr[u8_localLoopCounter] .channel_Attachment);
 		}
 		/*
 		 * if the pin was configured as output and the pull up resistor is activated then report error
 		 * */
-		else if(gastr_ConfigArr[u8_localLoopCounter] . Channel_Direction == PORT_PIN_OUT && gastr_ConfigArr[u8_localLoopCounter] .channel_Attachment == PULL_UP_RES){
+		else if(gastr_PortConfigArr[u8_localLoopCounter] . Channel_Direction == PORT_PIN_OUT && gastr_PortConfigArr[u8_localLoopCounter] .channel_Attachment == PULL_UP_RES){
 			/*report error*/
 			returnError=PORT_PULL_UP_RES_WRONG_USE;
 		}

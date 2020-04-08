@@ -77,7 +77,7 @@ typedef struct{
  *                      Externed Structure instance                     *
  ************************************************************************/
 
-extern Port_ConfigType gastr_ConfigArr[];
+extern Port_ConfigType gastr_PortConfigArr[];
 
 
 /************************************************************************/
