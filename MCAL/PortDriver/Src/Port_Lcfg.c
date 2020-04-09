@@ -20,9 +20,7 @@
 Port_ConfigType gastr_PortConfigArr[NUMBER_OF_CONFIGURED_PINS]=
 /*            channel ID                      Direction                          Attachment*/
 {{          PORT_CHANNEL_A0         ,       PORT_PIN_OUT                ,           NO_RES  },
- {          PORT_CHANNEL_A1         ,       PORT_PIN_OUT                ,           NO_RES  },
- {          PORT_CHANNEL_A2         ,       PORT_PIN_OUT                 ,          NO_RES	},
- {          PORT_CHANNEL_A3         ,       PORT_PIN_OUT                 ,          NO_RES	}
+ {          PORT_CHANNEL_D5         ,       PORT_PIN_IN                 ,           NO_RES  },
 };
 
 

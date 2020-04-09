@@ -17,7 +17,7 @@
  * */
 
 typedef uint8 PushButton_ConfigurationStrSizeType;
-#define PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS			(PushButton_ConfigurationStrSizeType)4
+#define PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS			(PushButton_ConfigurationStrSizeType)1
 
 
 
@@ -27,16 +27,25 @@ typedef uint8 PushButton_ConfigurationStrSizeType;
  *
  * */
 
-#define PUSHBUTTON_PERIODIC_UPDATE
+/*#define PUSHBUTTON_PERIODIC_UPDATE*/
 
 /*
  * this parameter used as array of pointers to function size in configuration structure
  *
  * */
 
+#ifdef PUSHBUTTON_PERIODIC_UPDATE
 #define PUSHBUTTON_NUMBER_OF_STATES                     4
 
+/*
+ * this parameter is used as number of checks done in each state to check the correctness of the state
+ * (number of check per state)depending on its value the periodic time must change
+ * if it was configured as 1 then to check the switch full states it will take 4 cycles only
+ * */
+typedef uint8 PushButton_StateCounterType;
+#define PUSHBUTTON_COUNTER_VALUE                        2
 
+#endif
 /************************************************************************/
 
 #endif /* PUSHBUTTON_INC_PUSHBUTTON_CFG_H_ */

@@ -9,6 +9,10 @@
 #define STD_TYPES_H_
 
 
+#ifndef NULL
+#define NULL                        (void*)(0x00)
+#endif
+
 typedef unsigned char               uint8;
 typedef char                        sint8;
 typedef unsigned short              uint16;

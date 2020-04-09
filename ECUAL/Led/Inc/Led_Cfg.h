@@ -18,7 +18,7 @@
  * */
 
 typedef uint8 Led_ConfigurationStrSizeType;
-#define LED_NUMBER_OF_CONFIGURED_LEDS			(Led_ConfigurationStrSizeType)4
+#define LED_NUMBER_OF_CONFIGURED_LEDS			(Led_ConfigurationStrSizeType)1
 
 
 /************************************************************************/

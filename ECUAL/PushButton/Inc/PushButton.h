@@ -1,6 +1,6 @@
 /*
  *  File 	   : PushButton.h
- *  Created on : April 8, 2020
+ *  Created on : April 9, 2020
  *  Author	   : Mazen Shouman
  *  Version    : 1.0
  */
@@ -63,16 +63,37 @@ typedef uint8 PushButton_ErrorStateType;
 #define PUSHBUTTON_E_OK                                    (PushButton_ErrorStateType)0
 #define PUSHBUTTON_E_NOT_OK                                (PushButton_ErrorStateType)1
 #define PUSHBUTTON_ID_OUTOFRANGE                           (PushButton_ErrorStateType)2
-#define PUSHBUTTON_CURRENT_DIRECTION_IS_NOT_DEFINED        (PushButton_ErrorStateType)3
+#define PUSHBUTTON_ACTIVE_TYPE_IS_NOT_DEFINED              (PushButton_ErrorStateType)3
 #define PUSHBUTTON_NULL_POINTER                            (PushButton_ErrorStateType)4
+#define PUSHBUTTON_UNDEFINED_STATE                         (PushButton_ErrorStateType)5
 
+
+#ifdef PUSHBUTTON_PERIODIC_UPDATE
 
 /*
- *uses the STD_LOW and STD_HIGH macros from Std_Types
+ * states used in case of real time usage or periodic check on the switch
  * */
+
+typedef uint8 PushButton_StateType;
+#define PUSHBUTTON_RELEASED_STATE                           (PushButton_StateType)0
+#define PUSHBUTTON_PRE_PRESSED_STATE                       (PushButton_StateType)1
+#define PUSHBUTTON_PRESSED_STATE                           (PushButton_StateType)2
+#define PUSHBUTTON_PRE_RELEASED_STATE                      (PushButton_StateType)3
+
 /*
-typedef uint8 PushButton_LevelType;
-*/
+ * pointer to function to execute function from upper layer when current state is reached
+ * */
+
+typedef void (*PushButton_PtrToFunctionType)(void);
+
+
+#else
+
+typedef uint8 PushButton_StateType;
+#define PUSHBUTTON_RELEASED_STATE                          (PushButton_StateType)0
+#define PUSHBUTTON_PRESSED_STATE                           (PushButton_StateType)2
+
+#endif
 
 /************************************************************************/
 
@@ -106,9 +127,29 @@ typedef uint8 PushButton_LevelType;
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-PushButton_ErrorStateType PushButton_ReadButtonLevel(PushButton_IdType PushButton_Id , PushButton_StateType* PushButton_State);
+PushButton_ErrorStateType PushButton_ReadButtonState(PushButton_IdType PushButton_Id , PushButton_StateType* State);
 
 #else
+
+/**************************************************************************************************************************************
+ *  Function : PushButton_Init                                                                                                        *
+ *  Param    : IN     : Name / none                                                                                                   *
+ *                      Type / void                                                                                                   *
+ *                      Desc / none                                                                                                   *
+ *                                                                                                                                    *
+ *             Output : Name / none                                                                                                   *
+ *                                                                                                                                    *
+ *  Return   : none                                                                                                                   *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *  Desc     : This function initialize the local structure used to store details for each switch used with periodic                  *
+ *             update configuration                                                                                                   *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *                                                                                                                                    *
+ *************************************************************************************************************************************/
+
+void PushButton_Init(void);
 
 /**************************************************************************************************************************************
  *  Function : PushButton_GetCurrentState                                                                                             *
@@ -130,7 +171,7 @@ PushButton_ErrorStateType PushButton_ReadButtonLevel(PushButton_IdType PushButto
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-PushButton_ErrorStateType PushButton_GetCurrentState(PushButton_IdType PushButton_Id , PushButton_StateType* PushButton_State);
+PushButton_ErrorStateType PushButton_GetCurrentState(PushButton_IdType PushButton_Id , PushButton_StateType* State);
 
 /**************************************************************************************************************************************
  *  Function : PushButton_GetCurrentState                                                                                             *
