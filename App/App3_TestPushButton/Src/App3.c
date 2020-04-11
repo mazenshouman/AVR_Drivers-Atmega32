@@ -14,23 +14,24 @@
 #include "Led_Wrapper.h"
 #include "Led_Lcfg.h"
 #include "Led.h"
-#include "PushButton_Wrapper.h"
-#include "PushButton_Lcfg.h"
-#include "PushButton.h"
+#include "Pushbutton_Wrapper.h"
+#include "Pushbutton_Cfg.h"
+#include "Pushbutton_Lcfg.h"
+#include "Pushbutton.h"
 
 void App3(void)
 {
 	Port_Init();
 	Led_Init();
-	PushButton_StateType currentState;
+	Pushbutton_StateType currentState;
 	while(1)
 	{
-		PushButton_ReadButtonState(PUSHBUTTON_ID0 , &currentState);
+		Pushbutton_ReadButtonState(PUSHBUTTON_ID0 , &currentState);
 		if(currentState==PUSHBUTTON_PRESSED_STATE)
 		{
 			Led_Toggle(LED_ID0);
 			do{
-				PushButton_ReadButtonState(PUSHBUTTON_ID0 , &currentState);
+				Pushbutton_ReadButtonState(PUSHBUTTON_ID0 , &currentState);
 			}
 			while(currentState==PUSHBUTTON_PRESSED_STATE);
 		}

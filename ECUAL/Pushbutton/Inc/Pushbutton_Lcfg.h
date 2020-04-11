@@ -1,5 +1,5 @@
 /*
- *  File 	   : PushButton_Lcfg.h
+ *  File 	   : Pushbutton_Lcfg.h
  *  Created on : April 8, 2020
  *  Author	   : Mazen Shouman
  *  Version    : 1.0
@@ -19,24 +19,24 @@
  * flow (sinking or sourcing)
  *
  * */
-typedef uint8 PushButton_ActiveStateType;
-#define PUSHBUTTON_ACTIVE_LOW                                (PushButton_ActiveStateType)0
-#define PUSHBUTTON_ACTIVE_HIGH                               (PushButton_ActiveStateType)1
+typedef uint8 Pushbutton_ActiveStateType;
+#define PUSHBUTTON_ACTIVE_LOW                                (Pushbutton_ActiveStateType)0
+#define PUSHBUTTON_ACTIVE_HIGH                               (Pushbutton_ActiveStateType)1
 
 /************************************************************************
  *                      Configuration Structure                         *
  ************************************************************************/
 
 typedef struct{
-	PushButton_ChannelType                   PushButton_Channel;
-	PushButton_ActiveStateType               PushButton_ActiveState;
-}PushButton_ConfigType;
+	Pushbutton_ChannelType                   Pushbutton_Channel;
+	Pushbutton_ActiveStateType               Pushbutton_ActiveState;
+}Pushbutton_ConfigType;
 
 /************************************************************************
  *                      extern for Configuration Structure              *
  ************************************************************************/
 
-extern PushButton_ConfigType gastr_PushButtonConfigArr[];
+extern Pushbutton_ConfigType gastr_PushbuttonConfigArr[];
 
 
 /************************************************************************/

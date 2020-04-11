@@ -1,27 +1,30 @@
 /*
- *  File 	   : PushButton_Wrapper.h
- *  Created on : April 8, 2020
+ *  File 	   : keypad_Wrapper.h
+ *  Created on : April 10, 2020
  *  Author	   : Mazen Shouman
  *  Version    : 1.0
  */
 
-#ifndef PUSHBUTTON_INC_PUSHBUTTON_WRAPPER_H_
-#define PUSHBUTTON_INC_PUSHBUTTON_WRAPPER_H_
+#ifndef KEYPAD_INC_KEYPAD_WRAPPER_H_
+#define KEYPAD_INC_KEYPAD_WRAPPER_H_
 
 /************************************************************************
  *                   Wrappers for Macros and Types                      *
  ************************************************************************/
 
-#define PushButton_ChannelType         Dio_ChannelType
+#define Keypad_ChannelType         Dio_ChannelType
 
 /************************************************************************
  *                        Wrappers for APIS                             *
  ************************************************************************/
 
-#define PushButton_ReadChannel         Dio_ReadChannel
+#define Keypad_ReadChannel          Dio_ReadChannel
+#define Keypad_WriteChannel         Dio_WriteChannel
+
 
 /************************************************************************/
 
 
 
-#endif /* PUSHBUTTON_INC_PUSHBUTTON_WRAPPER_H_ */
+
+#endif /* KEYPAD_INC_KEYPAD_WRAPPER_H_ */

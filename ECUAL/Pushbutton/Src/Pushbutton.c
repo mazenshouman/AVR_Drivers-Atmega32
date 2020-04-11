@@ -1,5 +1,5 @@
 /*
- *  File 	   : PushButton.c
+ *  File 	   : Pushbutton.c
  *  Created on : April 9, 2020
  *  Author	   : Mazen Shouman
  *  Version    : 1.0
@@ -12,23 +12,22 @@
 #include "Std_types.h"
 #include "Dio_Lcfg.h"
 #include "Dio.h"
-#include "PushButton_Wrapper.h"
-#include "PushButton_Cfg.h"
-#include "PushButton_Lcfg.h"
-#include "PushButton.h"
-
+#include "Pushbutton_Wrapper.h"
+#include "Pushbutton_Cfg.h"
+#include "Pushbutton_Lcfg.h"
+#include "Pushbutton.h"
 
 
 /************************************************************************
- *              private structure used to save PushButton status        *
+ *              private structure used to save Pushbutton status        *
  *                  and their callback functions                        *
  ************************************************************************/
 
 #ifdef PUSHBUTTON_PERIODIC_UPDATE
 typedef struct{
-	PushButton_StateType					 PushButton_CurrentState;
-	PushButton_StateCounterType				 PushButton_StateCounter;
-	PushButton_PtrToFunctionType			 PushButton_ArrPtrToFunction[PUSHBUTTON_NUMBER_OF_STATES];
+	Pushbutton_StateType					 Pushbutton_CurrentState;
+	Pushbutton_StateCounterType				 Pushbutton_StateCounter;
+	Pushbutton_PtrToFunctionType			 PushButton_ArrPtrToFunction[PUSHBUTTON_NUMBER_OF_STATES];
 }PushButton_LocalButtonDetailsType;
 
 
@@ -37,7 +36,7 @@ typedef struct{
  *                               structure                              *
  ************************************************************************/
 
-PushButton_LocalButtonDetailsType     astr_PushButtonDetails[PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS];
+static PushButton_LocalButtonDetailsType     astr_PushbuttonDetails[PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS];
 #endif
 /************************************************************************/
 
@@ -49,15 +48,15 @@ PushButton_LocalButtonDetailsType     astr_PushButtonDetails[PUSHBUTTON_NUMBER_O
 
 /**************************************************************************************************************************************
  *  Function : PushButton_ReadButtonLevel                                                                                             *
- *  Param    : IN     : Name / PushButton_Id                                                                                          *
- *                      Type / PushButton_IdType                                                                                      *
+ *  Param    : IN     : Name / Pushbutton_Id                                                                                          *
+ *                      Type / Pushbutton_IdType                                                                                      *
  *                      Desc / predefine macro for PushButton id                                                                      *
  *                                                                                                                                    *
  *             Output : Name / State                                                                                                  *
- *                      Type / PushButton_StateType*                                                                                  *
+ *                      Type / Pushbutton_StateType*                                                                                  *
  *                      Desc / this pointer is used to return state to the caller function through pointer (pressed or released)      *
  *                                                                                                                                    *
- *  Return   : PushButton_ErrorStateType                                                                                              *
+ *  Return   : Pushbutton_ErrorStateType                                                                                              *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *  Desc     : This function reads the current level of the button and return the obtained level(used in                              *
@@ -67,10 +66,10 @@ PushButton_LocalButtonDetailsType     astr_PushButtonDetails[PUSHBUTTON_NUMBER_O
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-PushButton_ErrorStateType PushButton_ReadButtonState(PushButton_IdType PushButton_Id , PushButton_StateType* State)
+Pushbutton_ErrorStateType Pushbutton_ReadButtonState(Pushbutton_IdType Pushbutton_Id , Pushbutton_StateType* State)
 {
 
-	PushButton_ErrorStateType    returnErrorState=PUSHBUTTON_E_OK;
+	Pushbutton_ErrorStateType    returnErrorState=PUSHBUTTON_E_OK;
 
 	/*
 	 * check the pointer for null pointer error
@@ -86,7 +85,7 @@ PushButton_ErrorStateType PushButton_ReadButtonState(PushButton_IdType PushButto
 		 * check if the pushButton ID is out of the limit or not
 		 * */
 
-		if(PushButton_Id >= PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS)
+		if(Pushbutton_Id >= PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS)
 		{
 			returnErrorState = PUSHBUTTON_ID_OUTOFRANGE;
 		}
@@ -95,14 +94,14 @@ PushButton_ErrorStateType PushButton_ReadButtonState(PushButton_IdType PushButto
 			/*
 			 * read the active type of the pushbutton
 			 * */
-			switch(gastr_PushButtonConfigArr[PushButton_Id].PushButton_ActiveState)
+			switch(gastr_PushbuttonConfigArr[Pushbutton_Id].Pushbutton_ActiveState)
 			{
 				/*
 				 * return the state of the pushbutton
 				 *
 				 * */
 				case PUSHBUTTON_ACTIVE_LOW:
-					if(PushButton_ReadChannel(gastr_PushButtonConfigArr[PushButton_Id].PushButton_Channel)==STD_LOW)
+					if(Pushbutton_ReadChannel(gastr_PushbuttonConfigArr[Pushbutton_Id].Pushbutton_Channel)==STD_LOW)
 					{
 						*State=PUSHBUTTON_PRESSED_STATE;
 					}
@@ -112,7 +111,7 @@ PushButton_ErrorStateType PushButton_ReadButtonState(PushButton_IdType PushButto
 					}
 					break;
 				case PUSHBUTTON_ACTIVE_HIGH:
-					if(PushButton_ReadChannel(gastr_PushButtonConfigArr[PushButton_Id].PushButton_Channel)==STD_HIGH)
+					if(Pushbutton_ReadChannel(gastr_PushbuttonConfigArr[Pushbutton_Id].Pushbutton_Channel)==STD_HIGH)
 					{
 						*State=PUSHBUTTON_PRESSED_STATE;
 					}
@@ -132,7 +131,7 @@ PushButton_ErrorStateType PushButton_ReadButtonState(PushButton_IdType PushButto
 #else
 
 /**************************************************************************************************************************************
- *  Function : PushButton_Init                                                                                                        *
+ *  Function : Pushbutton_Init                                                                                                        *
  *  Param    : IN     : Name / none                                                                                                   *
  *                      Type / void                                                                                                   *
  *                      Desc / none                                                                                                   *
@@ -149,37 +148,37 @@ PushButton_ErrorStateType PushButton_ReadButtonState(PushButton_IdType PushButto
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-void PushButton_Init(void)
+void Pushbutton_Init(void)
 {
 	/*
 	 * initialize the local structure with the initial values
 	 * */
-	PushButton_ConfigurationStrSizeType u8_LocalCounter=0;
+	Pushbutton_ConfigurationStrSizeType u8_LocalCounter=0;
 	uint8 u8_LocalCounterForStates=0;
 
 
 	for(u8_LocalCounter=0 ; u8_LocalCounter<PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS ; ++u8_LocalCounter)
 	{
-		astr_PushButtonDetails[u8_LocalCounter].PushButton_CurrentState=PUSHBUTTON_RELEASED_STATE;
-		astr_PushButtonDetails[u8_LocalCounter].PushButton_StateCounter=NUMBER_ZERO;
+		astr_PushbuttonDetails[u8_LocalCounter].Pushbutton_CurrentState=PUSHBUTTON_RELEASED_STATE;
+		astr_PushbuttonDetails[u8_LocalCounter].Pushbutton_StateCounter=NUMBER_ZERO;
 		for(u8_LocalCounterForStates=0 ; u8_LocalCounterForStates<PUSHBUTTON_NUMBER_OF_STATES ; ++u8_LocalCounterForStates)
 		{
-			astr_PushButtonDetails[u8_LocalCounter].PushButton_ArrPtrToFunction[u8_LocalCounterForStates]=NULL;
+			astr_PushbuttonDetails[u8_LocalCounter].PushButton_ArrPtrToFunction[u8_LocalCounterForStates]=NULL;
 		}
 	}
 }
 
 /**************************************************************************************************************************************
  *  Function : PushButton_GetCurrentState                                                                                             *
- *  Param    : IN     : Name / PushButton_Id                                                                                          *
- *                      Type / PushButton_IdType                                                                                      *
+ *  Param    : IN     : Name / Pushbutton_Id                                                                                          *
+ *                      Type / Pushbutton_IdType                                                                                      *
  *                      Desc / predefine macro for PushButton id                                                                      *
  *                                                                                                                                    *
  *             Output : Name / State                                                                                                  *
- *                      Type / PushButton_StateType*                                                                                  *
+ *                      Type / Pushbutton_StateType*                                                                                  *
  *                      Desc / this pointer is used to return current state to the caller function through pointer                    *
  *                                                                                                                                    *
- *  Return   : PushButton_ErrorStateType                                                                                              *
+ *  Return   : Pushbutton_ErrorStateType                                                                                              *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *  Desc     : This function return the current state for the selected Push Button used in periodic check systems                     *
@@ -189,9 +188,9 @@ void PushButton_Init(void)
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-PushButton_ErrorStateType PushButton_GetCurrentState(PushButton_IdType PushButton_Id , PushButton_StateType* State)
+Pushbutton_ErrorStateType Pushbutton_GetCurrentState(Pushbutton_IdType Pushbutton_Id , Pushbutton_StateType* State)
 {
-	PushButton_ErrorStateType    returnErrorState=PUSHBUTTON_E_OK;
+	Pushbutton_ErrorStateType    returnErrorState=PUSHBUTTON_E_OK;
 
 	/*
 	 * check the pointer for null pointer error
@@ -207,7 +206,7 @@ PushButton_ErrorStateType PushButton_GetCurrentState(PushButton_IdType PushButto
 		 * check if the pushButton ID is out of the limit or not
 		 * */
 
-		if(PushButton_Id >= PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS)
+		if(Pushbutton_Id >= PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS)
 		{
 			returnErrorState = PUSHBUTTON_ID_OUTOFRANGE;
 		}
@@ -216,21 +215,21 @@ PushButton_ErrorStateType PushButton_GetCurrentState(PushButton_IdType PushButto
 		 * return the current state from the local arr of str
 		 * */
 
-		*State=astr_PushButtonDetails[PushButton_Id].PushButton_CurrentState;
+		*State=astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_CurrentState;
 	}
 	return returnErrorState;
 }
 
 
 /**************************************************************************************************************************************
- *  Function : PushButton_GetCurrentState                                                                                             *
- *  Param    : IN     : Name / PushButton_Id                                                                                          *
- *                      Type / PushButton_IdType                                                                                      *
+ *  Function : Pushbutton_GetCurrentState                                                                                             *
+ *  Param    : IN     : Name / Pushbutton_Id                                                                                          *
+ *                      Type / Pushbutton_IdType                                                                                      *
  *                      Desc / predefine macro for PushButton id                                                                      *
  *                                                                                                                                    *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *  Return   : PushButton_ErrorStateType                                                                                              *
+ *  Return   : Pushbutton_ErrorStateType                                                                                              *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *  Desc     : This function used with periodic calls to update the state of certain switch                                           *
@@ -239,17 +238,17 @@ PushButton_ErrorStateType PushButton_GetCurrentState(PushButton_IdType PushButto
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id)
+Pushbutton_ErrorStateType Pushbutton_UpdateState(Pushbutton_IdType Pushbutton_Id)
 {
-	PushButton_ErrorStateType    returnErrorState=PUSHBUTTON_E_OK;
-	PushButton_ConfigurationStrSizeType u8_LocalCounter=0;
-	PushButton_StateType u8_localStateType;
+	Pushbutton_ErrorStateType    returnErrorState=PUSHBUTTON_E_OK;
+	Pushbutton_ConfigurationStrSizeType u8_LocalCounter=0;
+	Pushbutton_StateType u8_localStateType;
 
 	/*
 	 * check if the pushButton ID is out of the limit or not
 	 * */
 
-	if(PushButton_Id >= PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS)
+	if(Pushbutton_Id >= PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS)
 	{
 		returnErrorState = PUSHBUTTON_ID_OUTOFRANGE;
 	}
@@ -262,7 +261,7 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 		 * */
 		for(u8_LocalCounter=0 ; u8_LocalCounter<PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS ; ++u8_LocalCounter)
 		{
-			switch(gastr_PushButtonConfigArr[PushButton_Id].PushButton_ActiveState)
+			switch(gastr_PushbuttonConfigArr[Pushbutton_Id].Pushbutton_ActiveState)
 			{
 				/*
 				 * depending on the active type of the switch get the state of it from two states (pressed/notpressed)
@@ -270,7 +269,7 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 				 * be taken (move to the next state or continue on the current state)
 				 * */
 				case PUSHBUTTON_ACTIVE_LOW:
-					if(PushButton_ReadChannel(gastr_PushButtonConfigArr[PushButton_Id].PushButton_Channel)==STD_LOW)
+					if(Pushbutton_ReadChannel(gastr_PushbuttonConfigArr[Pushbutton_Id].Pushbutton_Channel)==STD_LOW)
 					{
 						u8_localStateType=PUSHBUTTON_PRESSED_STATE;
 					}
@@ -280,7 +279,7 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 					}
 					break;
 				case PUSHBUTTON_ACTIVE_HIGH:
-					if(PushButton_ReadChannel(gastr_PushButtonConfigArr[PushButton_Id].PushButton_Channel)==STD_HIGH)
+					if(Pushbutton_ReadChannel(gastr_PushbuttonConfigArr[Pushbutton_Id].Pushbutton_Channel)==STD_HIGH)
 					{
 						u8_localStateType=PUSHBUTTON_PRESSED_STATE;
 					}
@@ -300,32 +299,32 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 				/*
 				 * check the current state to update it
 				 * */
-				switch(astr_PushButtonDetails[PushButton_Id].PushButton_CurrentState)
+				switch(astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_CurrentState)
 				{
 					case PUSHBUTTON_RELEASED_STATE:
 						/*if the push button detected as pressed*/
 						if(u8_localStateType==PUSHBUTTON_PRESSED_STATE)
 						{
 							/*increase counter*/
-							++astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter;
+							++astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter;
 							/*check if the counter reached the number of counts needed to move to the next state*/
-							if(astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter>=PUSHBUTTON_COUNTER_VALUE)
+							if(astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter>=PUSHBUTTON_COUNTER_VALUE)
 							{
 								/*
 								 * if there is function to be executed for the next state lunch it
 								 * */
-								if(astr_PushButtonDetails[PushButton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRE_PRESSED_STATE]!=NULL)
+								if(astr_PushbuttonDetails[Pushbutton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRE_PRESSED_STATE]!=NULL)
 								{
-									astr_PushButtonDetails[PushButton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRE_PRESSED_STATE]();
+									astr_PushbuttonDetails[Pushbutton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRE_PRESSED_STATE]();
 								}
 								/*
 								 * then change the current state to the next state
 								 * */
-								astr_PushButtonDetails[PushButton_Id].PushButton_CurrentState = PUSHBUTTON_PRE_PRESSED_STATE;
+								astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_CurrentState = PUSHBUTTON_PRE_PRESSED_STATE;
 								/*
 								 *reset the counter of the state to start from zero for the next state
 								 * */
-								astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter=0;
+								astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter=0;
 							}
 						}
 						/*
@@ -333,7 +332,7 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 						 * */
 						else
 						{
-							astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter=0;
+							astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter=0;
 						}
 						break;
 					case PUSHBUTTON_PRE_PRESSED_STATE:
@@ -341,25 +340,25 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 						if(u8_localStateType==PUSHBUTTON_PRESSED_STATE)
 						{
 							/*increase counter*/
-							++astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter;
+							++astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter;
 							/*check if the counter reached the number of counts needed to move to the next state*/
-							if(astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter>=PUSHBUTTON_COUNTER_VALUE)
+							if(astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter>=PUSHBUTTON_COUNTER_VALUE)
 							{
 								/*
 								 * if there is function to be executed here lunch it
 								 * */
-								if(astr_PushButtonDetails[PushButton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRESSED_STATE]!=NULL)
+								if(astr_PushbuttonDetails[Pushbutton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRESSED_STATE]!=NULL)
 								{
-									astr_PushButtonDetails[PushButton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRESSED_STATE]();
+									astr_PushbuttonDetails[Pushbutton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRESSED_STATE]();
 								}
 								/*
 								 * then change the current state to the next state
 								 * */
-								astr_PushButtonDetails[PushButton_Id].PushButton_CurrentState = PUSHBUTTON_PRESSED_STATE;
+								astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_CurrentState = PUSHBUTTON_PRESSED_STATE;
 								/*
 								 *reset the counter of the state to start from zero for the next state
 								 * */
-								astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter=0;
+								astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter=0;
 							}
 						}
 						/*
@@ -367,7 +366,7 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 						 * */
 						else
 						{
-							astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter=0;
+							astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter=0;
 						}
 						break;
 					case PUSHBUTTON_PRESSED_STATE:
@@ -375,26 +374,26 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 						if(u8_localStateType==PUSHBUTTON_RELEASED_STATE)
 						{
 							/*increase counter*/
-							++astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter;
+							++astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter;
 							/*check if the counter reached the number of counts needed to move to the next state*/
-							if(astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter>=PUSHBUTTON_COUNTER_VALUE)
+							if(astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter>=PUSHBUTTON_COUNTER_VALUE)
 							{
 								/*
 								 * if there is function to be executed here lunch it
 								 * */
-								if(astr_PushButtonDetails[PushButton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRE_RELEASED_STATE]!=NULL)
+								if(astr_PushbuttonDetails[Pushbutton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRE_RELEASED_STATE]!=NULL)
 								{
 									/*the function must be as small as possible for performance and accuracy wise*/
-									astr_PushButtonDetails[PushButton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRE_RELEASED_STATE]();
+									astr_PushbuttonDetails[Pushbutton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_PRE_RELEASED_STATE]();
 								}
 								/*
 								 * then change the current state to the next state
 								 * */
-								astr_PushButtonDetails[PushButton_Id].PushButton_CurrentState = PUSHBUTTON_PRE_RELEASED_STATE;
+								astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_CurrentState = PUSHBUTTON_PRE_RELEASED_STATE;
 								/*
 								 *reset the counter of the state to start from zero for the next state
 								 * */
-								astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter=0;
+								astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter=0;
 							}
 						}
 						/*
@@ -402,7 +401,7 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 						 * */
 						else
 						{
-							astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter=0;
+							astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter=0;
 						}
 						break;
 					case PUSHBUTTON_PRE_RELEASED_STATE:
@@ -410,26 +409,26 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 						if(u8_localStateType==PUSHBUTTON_RELEASED_STATE)
 						{
 							/*increase counter*/
-							++astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter;
+							++astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter;
 							/*check if the counter reached the number of counts needed to move to the next state*/
-							if(astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter>=PUSHBUTTON_COUNTER_VALUE)
+							if(astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter>=PUSHBUTTON_COUNTER_VALUE)
 							{
 								/*
 								 * if there is function to be executed here lunch it
 								 * */
-								if(astr_PushButtonDetails[PushButton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_RELEASED_STATE]!=NULL)
+								if(astr_PushbuttonDetails[Pushbutton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_RELEASED_STATE]!=NULL)
 								{
 									/*the function must be as small as possible for performance and accuracy wise*/
-									astr_PushButtonDetails[PushButton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_RELEASED_STATE]();
+									astr_PushbuttonDetails[Pushbutton_Id].PushButton_ArrPtrToFunction[PUSHBUTTON_RELEASED_STATE]();
 								}
 								/*
 								 * then change the current state to the next state
 								 * */
-								astr_PushButtonDetails[PushButton_Id].PushButton_CurrentState = PUSHBUTTON_RELEASED_STATE;
+								astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_CurrentState = PUSHBUTTON_RELEASED_STATE;
 								/*
 								 *reset the counter of the state to start from zero for the next state
 								 * */
-								astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter=0;
+								astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter=0;
 							}
 						}
 						/*
@@ -437,7 +436,7 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 						 * */
 						else
 						{
-							astr_PushButtonDetails[PushButton_Id].PushButton_StateCounter=0;
+							astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter=0;
 						}
 						break;
 					default:
@@ -452,21 +451,21 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
 }
 
 /**************************************************************************************************************************************
- *  Function : PushButton_SetCallBackFunction                                                                                         *
- *  Param    : IN     : Name / PushButton_Id                                                                                          *
- *                      Type / PushButton_IdType                                                                                      *
+ *  Function : Pushbutton_SetCallBackFunction                                                                                         *
+ *  Param    : IN     : Name / Pushbutton_Id                                                                                          *
+ *                      Type / Pushbutton_IdType                                                                                      *
  *                      Desc / predefine macro for PushButton id                                                                      *
  *                                                                                                                                    *
  *                      Name / PtrToFunction                                                                                          *
- *                      Type / PushButton_PtrToFunctionType                                                                           *
+ *                      Type / Pushbutton_StateCounterType                                                                           *
  *                      Desc / takes Pointer to function which wanted to be executed when certain state is reached                    *
  *                                                                                                                                    *
  *                      Name / State                                                                                                  *
- *                      Type / PushButton_StateType                                                                                   *
+ *                      Type / Pushbutton_StateType                                                                                   *
  *                      Desc / predefine macro for PushButton state                                                                   *
  *             Output : None                                                                                                          *
  *                                                                                                                                    *
- *  Return   : PushButton_ErrorStateType                                                                                              *
+ *  Return   : Pushbutton_ErrorStateType                                                                                              *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *  Desc     : This function used with periodic calls to set callback functions for PushButton for certain state                      *
@@ -475,9 +474,9 @@ PushButton_ErrorStateType PushButton_UpdateState(PushButton_IdType PushButton_Id
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-PushButton_ErrorStateType PushButton_SetCallBackFunction(PushButton_IdType PushButton_Id , PushButton_PtrToFunctionType PtrToFunction  , PushButton_StateType  State)
+Pushbutton_ErrorStateType Pushbutton_SetCallBackFunction(Pushbutton_IdType Pushbutton_Id , Pushbutton_PtrToFunctionType PtrToFunction  , Pushbutton_StateType  State)
 {
-	PushButton_ErrorStateType    returnErrorState=PUSHBUTTON_E_OK;
+	Pushbutton_ErrorStateType    returnErrorState=PUSHBUTTON_E_OK;
 
 	/*
 	 * check the pointer for null pointer error
@@ -493,7 +492,7 @@ PushButton_ErrorStateType PushButton_SetCallBackFunction(PushButton_IdType PushB
 		 * check if the pushButton ID is out of the limit or not
 		 * */
 
-		if(PushButton_Id >= PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS)
+		if(Pushbutton_Id >= PUSHBUTTON_NUMBER_OF_CONFIGURED_BUTTONS)
 		{
 			returnErrorState = PUSHBUTTON_ID_OUTOFRANGE;
 		}
@@ -511,7 +510,7 @@ PushButton_ErrorStateType PushButton_SetCallBackFunction(PushButton_IdType PushB
 				/*
 				 * add pointer to function to the array
 				 * */
-				astr_PushButtonDetails[PushButton_Id].PushButton_ArrPtrToFunction[State]=PtrToFunction;
+				astr_PushbuttonDetails[Pushbutton_Id].PushButton_ArrPtrToFunction[State]=PtrToFunction;
 			}
 		}
 	}
