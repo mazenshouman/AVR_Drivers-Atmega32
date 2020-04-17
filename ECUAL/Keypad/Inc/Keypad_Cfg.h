@@ -22,8 +22,8 @@ typedef uint8 Keypad_NumberOfPinsType;
 
 
 /*
- * this configuration parameter used to determine the number of PushButtons that
- * will be configured in the PushButton_Lcfg.c file (array of structures)
+ * this configuration parameter used to determine the number of Keypads that
+ * will be configured in the Keypad_Lcfg.c file (array of structures)
  * */
 
 typedef uint8 Keypad_ConfigurationStrSizeType;
@@ -42,6 +42,9 @@ typedef sint8 keypad_OutputDataType;
 
 
 #ifdef KEYPAD_PERIODIC_UPDATE
+/*this parameter will be used for future enhancement if call back function is used for
+ * each state
+ * */
 #define KEYPAD_NUMBER_OF_STATES                          4
 
 /*
@@ -50,7 +53,7 @@ typedef sint8 keypad_OutputDataType;
  * if it was configured as 1 then to check the switch full states it will take 4 cycles only
  * */
 typedef uint8 Keypad_StateCounterType;
-#define Keypad_COUNTER_VALUE                             2
+#define KEYPAD_COUNTER_VALUE                             1
 
 
 #endif

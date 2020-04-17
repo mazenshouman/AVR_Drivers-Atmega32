@@ -242,7 +242,7 @@ Pushbutton_ErrorStateType Pushbutton_UpdateState(Pushbutton_IdType Pushbutton_Id
 {
 	Pushbutton_ErrorStateType    returnErrorState=PUSHBUTTON_E_OK;
 	Pushbutton_ConfigurationStrSizeType u8_LocalCounter=0;
-	Pushbutton_StateType u8_localStateType;
+	Pushbutton_StateType u8_localCurrentState;
 
 	/*
 	 * check if the pushButton ID is out of the limit or not
@@ -271,21 +271,21 @@ Pushbutton_ErrorStateType Pushbutton_UpdateState(Pushbutton_IdType Pushbutton_Id
 				case PUSHBUTTON_ACTIVE_LOW:
 					if(Pushbutton_ReadChannel(gastr_PushbuttonConfigArr[Pushbutton_Id].Pushbutton_Channel)==STD_LOW)
 					{
-						u8_localStateType=PUSHBUTTON_PRESSED_STATE;
+						u8_localCurrentState=PUSHBUTTON_PRESSED_STATE;
 					}
 					else
 					{
-						u8_localStateType=PUSHBUTTON_RELEASED_STATE;
+						u8_localCurrentState=PUSHBUTTON_RELEASED_STATE;
 					}
 					break;
 				case PUSHBUTTON_ACTIVE_HIGH:
 					if(Pushbutton_ReadChannel(gastr_PushbuttonConfigArr[Pushbutton_Id].Pushbutton_Channel)==STD_HIGH)
 					{
-						u8_localStateType=PUSHBUTTON_PRESSED_STATE;
+						u8_localCurrentState=PUSHBUTTON_PRESSED_STATE;
 					}
 					else
 					{
-						u8_localStateType=PUSHBUTTON_RELEASED_STATE;
+						u8_localCurrentState=PUSHBUTTON_RELEASED_STATE;
 					}
 					break;
 				default:
@@ -303,7 +303,7 @@ Pushbutton_ErrorStateType Pushbutton_UpdateState(Pushbutton_IdType Pushbutton_Id
 				{
 					case PUSHBUTTON_RELEASED_STATE:
 						/*if the push button detected as pressed*/
-						if(u8_localStateType==PUSHBUTTON_PRESSED_STATE)
+						if(u8_localCurrentState==PUSHBUTTON_PRESSED_STATE)
 						{
 							/*increase counter*/
 							++astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter;
@@ -337,7 +337,7 @@ Pushbutton_ErrorStateType Pushbutton_UpdateState(Pushbutton_IdType Pushbutton_Id
 						break;
 					case PUSHBUTTON_PRE_PRESSED_STATE:
 						/*if the push button detected as pressed*/
-						if(u8_localStateType==PUSHBUTTON_PRESSED_STATE)
+						if(u8_localCurrentState==PUSHBUTTON_PRESSED_STATE)
 						{
 							/*increase counter*/
 							++astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter;
@@ -371,7 +371,7 @@ Pushbutton_ErrorStateType Pushbutton_UpdateState(Pushbutton_IdType Pushbutton_Id
 						break;
 					case PUSHBUTTON_PRESSED_STATE:
 						/*if the push button detected as Released*/
-						if(u8_localStateType==PUSHBUTTON_RELEASED_STATE)
+						if(u8_localCurrentState==PUSHBUTTON_RELEASED_STATE)
 						{
 							/*increase counter*/
 							++astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter;
@@ -406,7 +406,7 @@ Pushbutton_ErrorStateType Pushbutton_UpdateState(Pushbutton_IdType Pushbutton_Id
 						break;
 					case PUSHBUTTON_PRE_RELEASED_STATE:
 						/*if the push button detected as Released*/
-						if(u8_localStateType==PUSHBUTTON_RELEASED_STATE)
+						if(u8_localCurrentState==PUSHBUTTON_RELEASED_STATE)
 						{
 							/*increase counter*/
 							++astr_PushbuttonDetails[Pushbutton_Id].Pushbutton_StateCounter;

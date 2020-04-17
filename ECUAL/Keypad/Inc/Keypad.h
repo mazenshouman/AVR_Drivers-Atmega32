@@ -49,14 +49,14 @@ typedef uint8 Keypad_StateType;
 #define KEYPAD_PRESSED_STATE                           (Keypad_StateType)2
 #define KEYPAD_PRE_RELEASED_STATE                      (Keypad_StateType)3
 
-typedef uint8 Keypad_StateCounterType;
+
 
 #endif
 
 /************************************************************************/
 
 /************************************************************************
- *                    PushButton functions' prototype                   *
+ *                    Keypad functions' prototype                   *
  ************************************************************************/
 
 /**************************************************************************************************************************************

@@ -24,7 +24,8 @@
 
 Led_ConfigType gastr_LedConfigArr[LED_NUMBER_OF_CONFIGURED_LEDS]=
 /*            channel ID                      CurrentDirection                          InitialState*/
-{{          DIO_CHANNEL_A0         ,            LED_SOURCING                ,              LED_OFF                }
+{{          DIO_CHANNEL_B0         ,            LED_SOURCING                ,              LED_OFF                },
+ {          DIO_CHANNEL_B1         ,            LED_SOURCING                ,              LED_OFF                }
 };
 
 
