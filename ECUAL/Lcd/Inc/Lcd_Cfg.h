@@ -15,7 +15,7 @@
  * */
 
 typedef uint8 Lcd_ConfigurationStrSizeType;
-#define LCD_NUMBER_OF_CONFIGURED_KEYPADS			    (Lcd_ConfigurationStrSizeType)1
+#define LCD_NUMBER_OF_CONFIGURED_LCDS			    (Lcd_ConfigurationStrSizeType)1
 
 typedef uint8 Lcd_NumberOfDataPinsType;
 #define LCD_MAX_NUMBER_OF_DATA_PINS                     (Lcd_NumberOfDataPinsType)8
@@ -31,7 +31,7 @@ typedef uint8 Lcd_NumberOfControlPinsType;
  * if we want to initialize lcd with the same operations performed by the interal reset circuit
  * */
 
-#define LCD_INTERAL_RESET_OPERATIONS
+#define LCD_INTERAL_RESET_OPERATIONS 0
 
 /*
  * this parameter will change the behavior of the function depending if we have
@@ -39,6 +39,13 @@ typedef uint8 Lcd_NumberOfControlPinsType;
  * */
 
 /*#define LCD_ACTIVATE_STATES*/
+
+
+
+/*this definition will unlock alternative configuration structure which contains 2d array of char
+ * for each lcd 4 bytes is stored(so take care with memory) and must allocated in Lcfg file */
+
+#define LCD_ACTIVATE_CUSTOME_CHAR_MEMORY
 
 
 

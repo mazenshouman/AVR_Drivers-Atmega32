@@ -10,8 +10,8 @@
  ************************************************************************/
 
 #include "Std_types.h"
-#include "Dio_Lcfg.h"
 #include "Dio.h"
+#include "Dio_Lcfg.h"
 #include "keypad_Wrapper.h"
 #include "keypad_Cfg.h"
 #include "keypad.h"
@@ -21,7 +21,9 @@
 /************************************************************************
  *              private structure used to save keypad status            *
  ************************************************************************/
+
 #ifdef KEYPAD_PERIODIC_UPDATE
+
 typedef struct{
 	Keypad_StateType					 Keypad_CurrentState;
 	Keypad_StateCounterType				 Keypad_StateCounter;
@@ -34,6 +36,7 @@ typedef struct{
  ************************************************************************/
 
 static Keypad_LocalDetailsType     astr_KeypadDetails[KEYPAD_NUMBER_OF_CONFIGURED_KEYPADS][KEYPAD_NUMBER_OF_ROWS][KEYPAD_NUMBER_OF_COLUMNS];
+
 #endif
 /************************************************************************/
 
@@ -126,7 +129,7 @@ Keypad_ErrorStateType Keypad_GetKey(Keypad_IdType  Keypad_Id , keypad_OutputData
 	Keypad_ErrorStateType returnState=KEYPAD_E_OK;
 	Keypad_NumberOfPinsType u8_localCounterForRows=0;
 	Keypad_NumberOfPinsType u8_localCounterForColumns=0;
-	if(Keypad_Id>KEYPAD_NUMBER_OF_CONFIGURED_KEYPADS || Keypad_Id<NUMBER_ZERO){
+	if(Keypad_Id>KEYPAD_NUMBER_OF_CONFIGURED_KEYPADS){
 		returnState=KEYPAD_ID_OUTOFRANGE;
 	}
 	else
@@ -194,7 +197,7 @@ Keypad_ErrorStateType Keypad_GetKeyAfterRelease(Keypad_IdType  Keypad_Id , keypa
 	Keypad_ErrorStateType returnState=KEYPAD_E_OK;
 	Keypad_NumberOfPinsType u8_localCounterForRows=0;
 	Keypad_NumberOfPinsType u8_localCounterForColumns=0;
-	if(Keypad_Id>KEYPAD_NUMBER_OF_CONFIGURED_KEYPADS || Keypad_Id<NUMBER_ZERO){
+	if(Keypad_Id>KEYPAD_NUMBER_OF_CONFIGURED_KEYPADS){
 		returnState=KEYPAD_ID_OUTOFRANGE;
 	}
 	else

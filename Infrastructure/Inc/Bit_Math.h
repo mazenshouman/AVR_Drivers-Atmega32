@@ -13,7 +13,8 @@
 #define TOGGLE_BIT(REG,BIT)                                 REG^=(1<<(BIT))
 #define GET_BIT(REG,BIT)                                    (((REG)>>(BIT))&1)
 #define SET_VALUE_FOR_BIT_IN_REG(REG,BIT,VALUE)             REG=(((REG)&(~(1<<BIT)))|((VALUE)<<(BIT)))
-#define SET_VALUE_FOR_BITS_IN_REG(REG,MASK,OFFSET,VALUE)    REG=(((REG)&(MASK))|((VALUE)<<((OFFSET))&(MASK)))
+#define SET_VALUE_FOR_BITS_IN_REG(REG,MASK,OFFSET,VALUE)    REG=(((REG)&(MASK))|(((VALUE)<<(OFFSET))&(~MASK))) /*for this the mask value must be given as the value which will be anded directly to the register*/
+#define SET_VALUE_REG(REG,MASK,VALUE)                       REG=(((REG)&(MASK))|VALUE)
 
 
 #endif /* INC_BIT_MATH_H_ */

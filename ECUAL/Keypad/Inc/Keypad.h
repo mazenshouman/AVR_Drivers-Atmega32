@@ -8,7 +8,7 @@
 #ifndef KEYPAD_INC_KEYPAD_H_
 #define KEYPAD_INC_KEYPAD_H_
 
-
+#include "keypad_Cfg.h"
 /************************************************************************
  *                       Macros And Types                               *
  ************************************************************************/
@@ -71,7 +71,7 @@ typedef uint8 Keypad_StateType;
  *                                                                                                                                    *
  *                                                                                                                                    *
  *  Desc     : This function initialize the output pins with high value and if the periodic check function is activated then          *
- *             it will init the local array which holds the states of the keys                                                        *                                           *
+ *             it will init the local array which holds the states of the keys                                                        *
  *                                                                                                                                    *
  *                                                                                                                                    *
  *                                                                                                                                    *

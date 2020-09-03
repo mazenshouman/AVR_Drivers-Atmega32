@@ -14,9 +14,8 @@
 #include "Dio.h"
 #include "Pushbutton_Wrapper.h"
 #include "Pushbutton_Cfg.h"
-#include "Pushbutton_Lcfg.h"
 #include "Pushbutton.h"
-
+#include "Pushbutton_Lcfg.h"
 
 /************************************************************************
  *              private structure used to save Pushbutton status        *

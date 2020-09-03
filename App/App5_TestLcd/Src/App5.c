@@ -7,6 +7,7 @@
 
 #include <util/delay.h>
 #include "Std_types.h"
+
 #include "Port_Lcfg.h"
 #include "Port.h"
 #include "Dio_Lcfg.h"
@@ -29,7 +30,7 @@ void App5(void)
 	Led_Init();
 	Keypad_Init();
 	Lcd_Init();
-
+	Lcd_CreateCustomChar(LCD_ID0 , LCD_CUST_CHAR_POS_0 , LCD_CUST_CHAR_0);
 	keypad_OutputDataType  key;
 	while(1)
 	{
@@ -37,7 +38,9 @@ void App5(void)
 		if(key=='1')
 		{
 			Led_Toggle(LED_ID0);
-			Lcd_Write(LCD_ID0 , LCD_WRITE_DATA , 'A');
+			Lcd_DisplayCustomChar(LCD_ID0 , LCD_CUST_CHAR_POS_0);
+			Lcd_Goto(LCD_ID0 , LCD_SECOND_ROW , 8);
+			Lcd_Write(LCD_ID0 , LCD_WRITE_DATA , 'B');
 		}
 		else if(key=='2')
 		{

@@ -15,8 +15,8 @@
 #include "Dio.h"
 #include "Led_Wrapper.h"
 #include "Led_Cfg.h"
-#include "Led_Lcfg.h"
 #include "Led.h"
+#include "Led_Lcfg.h"
 
 /************************************************************************
  *      creating instance and initializing configuration structure      *

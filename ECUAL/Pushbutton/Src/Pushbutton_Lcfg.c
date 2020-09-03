@@ -10,12 +10,12 @@
  ************************************************************************/
 
 #include "Std_types.h"
-#include "Dio_Lcfg.h"
 #include "Dio.h"
+#include "Dio_Lcfg.h"
 #include "Pushbutton_Wrapper.h"
 #include "Pushbutton_Cfg.h"
-#include "Pushbutton_Lcfg.h"
 #include "Pushbutton.h"
+#include "Pushbutton_Lcfg.h"
 
 /************************************************************************
  *      creating instance and initializing configuration structure      *

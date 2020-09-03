@@ -11,7 +11,6 @@
 
 #include "Std_Types.h"
 #include "Bit_Math.h"
-#include "Port_Cfg.h"
 #include "Port_Lcfg.h"
 #include "Port.h"
     
@@ -52,8 +51,8 @@
  *                                                                                                                                    *
  *************************************************************************************************************************************/
 
-ErrorStatus_t Port_Init(void){
-	ErrorStatus_t returnError=E_OK;
+Port_ErrorStatus_t Port_Init(void){
+	Port_ErrorStatus_t returnError=E_OK;
 	Port_NumberOfConfiguredPinsType u8_localLoopCounter=0;
 	Port_PortType u8_PortNumber=0;
 	Port_PinType u8_PinActualNumber=0;
@@ -106,6 +105,40 @@ ErrorStatus_t Port_Init(void){
 	return returnError;
 }
 
+
+Port_ErrorStatus_t Port_SetPinDirection(Port_PinType Pin,Port_PinDirectionType Direction)
+{
+	Port_ErrorStatus_t returnError=E_OK;
+	Port_PortType u8_PortNumber=0;
+	Port_PinType u8_PinActualNumber=0;
+	if(Pin>PORT_CHANNEL_A7)
+	{
+		returnError=PORT_PIN_NUMBER_OUT_OF_RANGE;
+	}
+	else
+	{
+		/*
+		 * this line gets the port value which when added to the base address will access the correct DDR reg
+		 **/
+
+		u8_PortNumber =(Port_PortType) (Pin / NUMBER_OF_BITS_IN_REG);
+
+		/*
+		 * this line gets the actual pin number for the selected port so if the value of the entered pin is for ex 10 this means
+		 * port C PIN 2
+		 * */
+
+		u8_PinActualNumber = (Port_PinType) (Pin % NUMBER_OF_BITS_IN_REG);
+
+		/*
+		 * this line sets the selected direction in the DDR register
+		 *
+		 * */
+
+		SET_VALUE_FOR_BIT_IN_REG(GET_PORT_BASE_ADDRESS(u8_PortNumber) -> DDR,u8_PinActualNumber,Direction);
+	}
+	return returnError;
+}
 
 /****************************************************************************/
 

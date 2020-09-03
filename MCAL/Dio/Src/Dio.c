@@ -209,8 +209,9 @@ void Dio_WriteChannelGroup(const Dio_ChannelGroupType* ChannelGroupIdPtr,Dio_Por
 	 * mask the register with the given mask then shift the value with the given offset and or both
 	 * of them and set the value in the given register
 	 * */
+	/*the mask is given to mask the value not register, so we will and the inverse of it with register and the original mask with the value*/
 
-	SET_VALUE_FOR_BITS_IN_REG(GET_DIO_BASE_ADDRESS(ChannelGroupIdPtr->port)->PORT,ChannelGroupIdPtr->mask,ChannelGroupIdPtr->offset,Level);
+	SET_VALUE_FOR_BITS_IN_REG(GET_DIO_BASE_ADDRESS(ChannelGroupIdPtr->port)->PORT,(~ChannelGroupIdPtr->mask),ChannelGroupIdPtr->offset,Level);
 
 }
 

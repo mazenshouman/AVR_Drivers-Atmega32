@@ -36,6 +36,9 @@ typedef struct{
 
 #endif
 
+
+#ifndef LCD_ACTIVATE_CUSTOME_CHAR_MEMORY
+
 typedef struct{
 	Lcd_ChannelType                        Lcd_DataPinsArr[LCD_MAX_NUMBER_OF_DATA_PINS];
 	Lcd_ChannelType                        Lcd_ControlPinsArr[LCD_MAX_NUMBER_OF_CONTROL_PINS];
@@ -45,7 +48,20 @@ typedef struct{
 	Lcd_DisplayContorlType                 Lcd_DisplayControl:4;
 }Lcd_ConfigType;
 
+#else
 
+typedef struct{
+	Lcd_ChannelType                        Lcd_DataPinsArr[LCD_MAX_NUMBER_OF_DATA_PINS];
+	Lcd_ChannelType                        Lcd_ControlPinsArr[LCD_MAX_NUMBER_OF_CONTROL_PINS];
+	Lcd_CursorOrDiplayShiftType            Lcd_CursorOrDiplayShift:5;
+	Lcd_EntryModeType				       Lcd_EntryMode:3;
+	Lcd_FunctionSetType                    Lcd_FunctionSet:6;
+	Lcd_DisplayContorlType                 Lcd_DisplayControl:4;
+	Lcd_CustCharMaxNumberType              Lcd_NumberOfCustomChar:4;
+	Lcd_CustCharType                       (*Lcd_PtrArrCustomChar)[LCD_MAX_SIZE_OF_CUST_CHAR_ARR];
+}Lcd_ConfigType;
+
+#endif
 
 /************************************************************************
  *                      extern for Configuration Structure              *
